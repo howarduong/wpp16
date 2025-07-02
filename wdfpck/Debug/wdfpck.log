@@ -1,0 +1,59 @@
+﻿  wdfpck.cpp
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(145,4): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(156,4): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(167,2): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(240,4): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(282,6): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(380,6): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(377,18): warning C4101: “space_n”: 未引用的局部变量
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(372,9): warning C4101: “count”: 未引用的局部变量
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(378,6): warning C4101: “i”: 未引用的局部变量
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(395,43): error C2065: “g”: 未声明的标识符
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(395,3): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(395,3): error C2365: “fread”: 重定义；以前的定义是“函数”
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(396,44): error C2065: “f”: 未声明的标识符
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(396,3): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(396,3): error C2365: “fwrite”: 重定义；以前的定义是“函数”
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(397,2): error C2059: 语法错误:“}”
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(397,2): error C2143: 语法错误: 缺少“;”(在“}”的前面)
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(399,17): error C2143: 语法错误: 缺少“;”(在“{”的前面)
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(399,17): error C2447: “{”: 缺少函数标题(是否是老式的形式表?)
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(422,2): error C2059: 语法错误:“if”
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(422,17): error C2143: 语法错误: 缺少“;”(在“{”的前面)
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(422,17): error C2447: “{”: 缺少函数标题(是否是老式的形式表?)
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(425,2): error C2059: 语法错误:“do”
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(425,5): error C2143: 语法错误: 缺少“;”(在“{”的前面)
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(425,5): error C2447: “{”: 缺少函数标题(是否是老式的形式表?)
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(428,4): error C2059: 语法错误:“while”
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(429,9): error C2065: “g”: 未声明的标识符
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(429,2): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(429,2): error C2365: “fclose”: 重定义；以前的定义是“函数”
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(430,2): error C2059: 语法错误:“if”
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(430,18): error C2143: 语法错误: 缺少“;”(在“{”的前面)
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(430,18): error C2447: “{”: 缺少函数标题(是否是老式的形式表?)
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(433,18): error C2065: “m_List”: 未声明的标识符
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(433,25): error C2065: “n”: 未声明的标识符
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(433,2): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(433,2): error C2365: “printf”: 重定义；以前的定义是“函数”
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(434,2): error C2059: 语法错误:“return”
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(435,1): error C2059: 语法错误:“}”
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(435,1): error C2143: 语法错误: 缺少“;”(在“}”的前面)
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(441,1): error C2143: 语法错误: 缺少“;”(在“{”的前面)
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(441,1): error C2447: “{”: 缺少函数标题(是否是老式的形式表?)
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(523,4): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(542,4): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(583,4): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(653,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(654,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(655,3): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(656,3): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(672,8): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(677,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(678,4): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(686,4): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(694,8): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(724,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(725,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(726,2): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\备份文件\游戏\天下2相关资料\风魂引擎源码包\wpp16\wdfpck\wdfpck.cpp(727,2): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
