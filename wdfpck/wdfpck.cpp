@@ -7,50 +7,6 @@
 
 #define DWORD unsigned long
 
-
-
-#pragma pack(push, 1)
-struct BITMAPFILEHEADER {
-	uint16_t bfType;
-	uint32_t bfSize;
-	uint16_t bfReserved1;
-	uint16_t bfReserved2;
-	uint32_t bfOffBits;
-};
-
-struct BITMAPINFOHEADER {
-	uint32_t biSize;
-	int32_t biWidth;
-	int32_t biHeight;
-	uint16_t biPlanes;
-	uint16_t biBitCount;
-	uint32_t biCompression;
-	uint32_t biSizeImage;
-	int32_t biXPelsPerMeter;
-	int32_t biYPelsPerMeter;
-	uint32_t biClrUsed;
-	uint32_t biClrImportant;
-};
-
-struct TGAHeader {
-	uint8_t idLength;
-	uint8_t colorMapType;
-	uint8_t dataTypeCode;
-	uint16_t colorMapOrigin;
-	uint16_t colorMapLength;
-	uint8_t colorMapDepth;
-	uint16_t xOrigin;
-	uint16_t yOrigin;
-	uint16_t width;
-	uint16_t height;
-	uint8_t bitsPerPixel;
-	uint8_t imageDescriptor;
-};
-#pragma pack(pop)
-
-// å…¶ä»–ä»£ç ...
-
-
 struct FILE_LST {
 	DWORD uid;
 	const char *name;
@@ -84,8 +40,8 @@ public:
 	int ReadList(const char *name);
 	int ReadListOnly(const char *name);
 	void WriteList(FILE *f);
-	bool WriteFile(FILE *f,int n,bool findspace=false);		// ï¿½ï¿½ï¿½ï¿½ n ï¿½ï¿½ï¿½Ä¼ï¿½Ğ´ï¿½ï¿½ f
-	void UpdateFile(FILE *f,int n,std::vector<FILE_LST>& list,int t);	// ï¿½ï¿½ï¿½Âµï¿½ n ï¿½ï¿½ï¿½Ä¼ï¿½
+	bool WriteFile(FILE *f,int n,bool findspace=false);		// ½«µÚ n ¸öÎÄ¼şĞ´Èë f
+	void UpdateFile(FILE *f,int n,std::vector<FILE_LST>& list,int t);	// ¸üĞÂµÚ n ¸öÎÄ¼ş
 	void ReadHeader(FILE *f,FileHeader *header);
 	int FindFile(DWORD id) const;
 	int IsFileExist(int n,std::vector<FILE_LST>& list,int t) const;
@@ -271,52 +227,52 @@ int FileList::ReadListOnly(const char *name)
 	return m_FileNumber;
 }
 
-int FileList::ReadList(const char* name) {
-	FILE* f;
+int FileList::ReadList(const char *name)
+{
+	FILE *f;
 	int i;
-	char* p;
-	int size = file_size(name);
+	char *p;
+	int size=file_size(name);
 	bool in_line;
-	if (size < 0) return -1;
-	m_NameBuffer = new char[size];
-	f = fopen(name, "rb");
-	fread(m_NameBuffer, 1, size, f);
+	if (size<0) return -1;
+	m_NameBuffer=new char[size];
+	f=fopen(name,"rb");
+	fread(m_NameBuffer,1,size,f);
 	fclose(f);
 
-	m_FileNumber = 0;
-	for (in_line = false, i = 0; i < size; i++) {
+	m_FileNumber=0;	
+	for (in_line=false,i=0;i<size;i++) {
 		if (in_line) {
-			if (m_NameBuffer[i] <= 32 && m_NameBuffer[i] >= 0) {
-				m_NameBuffer[i] = 0;
+			if (m_NameBuffer[i]<=32 && m_NameBuffer[i]>=0) {
+				m_NameBuffer[i]=0;
 
 				FILE_LST fl;
 
-				fl.size = file_size(p);
-				fl.name = p;
-				fl.uid = string_id(string_adjust(p));
-				fl.space = 0;
-				fl.offset = 0;
+				fl.size=file_size(p);
+				fl.name=p;
+				fl.uid=string_id(string_adjust(p));
+				fl.space=0;
+				fl.offset=0;
 
-				if (fl.size > 0) {
+				if (fl.size>0) {
 					m_List.push_back(fl);
 					m_FileNumber++;
 				}
 				else {
-					printf("%s can't open.\n", p);
+					printf("%s can't open.\n",p);
 				}
-				in_line = false;
+				in_line=false;
 			}
 		}
 		else {
-			if (m_NameBuffer[i] > 32 || m_NameBuffer[i] < 0) {
-				p = &m_NameBuffer[i];
-				in_line = true;
+			if (m_NameBuffer[i]>32 || m_NameBuffer[i]<0) {
+				p=&m_NameBuffer[i];
+				in_line=true;
 			}
 		}
 	}
 	return m_FileNumber;
-}
-
+} 
 
 struct lt{
 	unsigned uid;
@@ -366,79 +322,61 @@ void FileList::WriteList(FILE *f)
 	}
 }
 
-bool FileList::WriteFile(FILE* f, int n, bool findspace) {
-	FILE* g;
+bool FileList::WriteFile(FILE *f,int n,bool findspace)
+{
+	FILE *g;
 	static char buffer[1024];
 	size_t count;
-	if (m_List[n].offset != 0)
+	if (m_List[n].offset!=0) 
 		return false;
 
-	long pos = ftell(f);
-	int space = -1, space_n;
+	long pos=ftell(f);
+	int space=-1,space_n;
 	int i;
 
-	g = fopen(m_List[n].name, "rb");
-	if (g == 0)
+	g=fopen(m_List[n].name,"rb");
+	if (g==0) 
 		return false;
 
-	// å¤„ç† BMP æ–‡ä»¶å¤´
-	if (strstr(m_List[n].name, ".bmp")) {
-		BITMAPFILEHEADER bmpFileHeader;
-		BITMAPINFOHEADER bmpInfoHeader;
-		fread(&bmpFileHeader, sizeof(BITMAPFILEHEADER), 1, g);
-		fread(&bmpInfoHeader, sizeof(BITMAPINFOHEADER), 1, g);
-		fwrite(&bmpFileHeader, sizeof(BITMAPFILEHEADER), 1, f);
-		fwrite(&bmpInfoHeader, sizeof(BITMAPINFOHEADER), 1, f);
-	}
-
-	// å¤„ç† TGA æ–‡ä»¶å¤´
-	if (strstr(m_List[n].name, ".tga")) {
-		TGAHeader tgaHeader;
-		fread(&tgaHeader, sizeof(TGAHeader), 1, g);
-		fwrite(&tgaHeader, sizeof(TGAHeader), 1, f);
-	}
-
 	if (findspace) {
-		fseek(g, 0, SEEK_END);
-		size_t size = ftell(g);
-		fseek(g, 0, SEEK_SET);
+		fseek(g,0,SEEK_END);
+		size_t size=ftell(g);
+		fseek(g,0,SEEK_SET);
 
-		for (i = 0; i < m_FileNumber; i++) {
-			if (m_List[i].offset != 0) {
-				if (m_List[i].space >= size) {
-					if (space < 0 || (space >= 0 && (size_t)space > m_List[i].space)) {
-						space_n = i;
-						space = m_List[i].space;
+		for (i=0;i<m_FileNumber;i++) {
+			if (m_List[i].offset!=0) {
+				if (m_List[i].space>=size) {
+					if (space<0 || (space>=0 && (size_t)space>m_List[i].space)) {
+						space_n=i;
+						space=m_List[i].space;
 					}
 				}
 			}
 		}
-		if (space >= 0) {
-			m_List[n].offset = m_List[space_n].offset + m_List[space_n].size;
-			fseek(f, m_List[n].offset, SEEK_SET);
-			m_List[n].space = space - size;
-			m_List[space_n].space = 0;
+		if (space>=0) {
+			m_List[n].offset=m_List[space_n].offset+m_List[space_n].size;
+			fseek(f,m_List[n].offset,SEEK_SET);
+			m_List[n].space=space-size;
+			m_List[space_n].space=0;
 		}
 	}
 
-	if (space < 0) {
-		m_List[n].offset = pos;
+	if (space<0) {
+		m_List[n].offset=pos;
 	}
 	do {
-		count = fread(buffer, 1, 1024, g);
-		fwrite(buffer, 1, count, f);
-	} while (count == 1024);
+		count=fread(buffer,1,1024,g);
+		fwrite(buffer,1,count,f);
+	} while(count==1024);
 	fclose(g);
-	if (space >= 0) {
-		fseek(f, pos, SEEK_SET);
+	if (space>=0) {
+		fseek(f,pos,SEEK_SET);
 	}
-	printf("[%s] ", m_List[n].name);
+	printf("[%s] ",m_List[n].name);
 	return true;
 }
 
-
-
-// ×¢, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é³¤ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Í¬
+// ×¢, Õâ¸öº¯Êı²»¼ì²é³¤¶ÈÊÇ·ñÏàÍ¬
 bool FileList::NeedUpdate(FILE *f,int n,std::vector<FILE_LST>& list,int t)
 {
 	assert((size_t)n < m_List.size() );
@@ -620,7 +558,7 @@ void update_datafile(const char *dataname,const char *lstname)
 			list.UpdateFile(f,n,old_list,i);
 		}
 	}
-// Ñ°ï¿½ï¿½ï¿½Ä¼ï¿½Î²
+// Ñ°ÕÒÎÄ¼şÎ²
 	for (i=0;i<old_number;i++) {
 		if (old_list[i].uid==0) 
 			continue;
@@ -635,7 +573,7 @@ void update_datafile(const char *dataname,const char *lstname)
 	fseek(f,header.offset,SEEK_SET);
 	for (i=0;i<new_number;i++) {
 		if (list.WriteFile(f,i,true)) 
-			printf("Added\n");	// ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+			printf("Added\n");	// Ìí¼ÓÎÄ¼ş(¼û·ì²åÕë)
 	}
 	header.offset=ftell(f);
 	list.WriteList(f);
@@ -643,19 +581,20 @@ void update_datafile(const char *dataname,const char *lstname)
 	fclose(f);
 }
 
-int main(int agv, char* agc[]) {
-	char lstname[256], dataname[256];
-	if (agv == 1) {
+int main(int agv,char *agc[])
+{
+	char lstname[256],dataname[256];
+	if (agv==1) {
 		printf("Need Argument\n");
 		return -1;
 	}
-	if (agc[1][0] == 'x') {
+	if (agc[1][0]=='x') {
 		char filename[256];
 		int i;
-		strcpy(lstname, agc[2]);
-		strcpy(dataname, agc[2]);
-		strcat(lstname, ".lst");
-		strcat(dataname, ".wdf");
+		strcpy(lstname,agc[2]);
+		strcpy(dataname,agc[2]);
+		strcat(lstname,".lst");
+		strcat(dataname,".wdf");
 		if (!file_exist(lstname)) {
 			printf("Can't open list file[.lst]\n");
 			return -1;
@@ -667,78 +606,65 @@ int main(int agv, char* agc[]) {
 		_mkdir(agc[2]);
 		FileList list;
 		int n;
-		n = list.ReadListOnly(lstname);
+		n=list.ReadListOnly(lstname);
 		std::vector<FILE_LST> old_list;
-		int old_number = read_lst(dataname, old_list);
-		FILE* df;
-		df = fopen(dataname, "rb");
-		for (i = 0; i < n; i++) {
-			FILE* f;
+		int old_number=read_lst(dataname,old_list);
+		FILE *df;
+		df=fopen(dataname,"rb");
+		for (i=0;i<n;i++) {
+			FILE *f;
 			int j;
 			static char buffer[1024];
-			strcpy(filename, agc[2]);
-			strcat(filename, "\\");
+			strcpy(filename,agc[2]);
+			strcat(filename,"\\");
 			int n;
-			n = list.IsFileExist(i, old_list, old_number);
-			printf("%s [%x] ", list.GetName(i), list.GetID(i));
-			if (n < 0) {
+			n=list.IsFileExist(i,old_list,old_number);
+			printf("%s [%x] ",list.GetName(i),list.GetID(i));
+			if (n<0) {
 				printf(" Can't find\n");
 				continue;
 			}
-			strcat(filename, list.GetName(i));
-			char* path = strchr(filename, '\\');
-			path = strchr(path + 1, '\\');
+			strcat(filename,list.GetName(i));
+			char *path=strchr(filename,'\\');
+			path=strchr(path+1,'\\');
 			if (path) {
-				path[0] = 0;
+				path[0]=0;
 				_mkdir(filename);
-				path[0] = '\\';
+				path[0]='\\';
 			}
-			f = fopen(filename, "wb");
-			fseek(df, old_list[n].offset, SEEK_SET);
+			f=fopen(filename,"wb");
+			fseek(df,old_list[n].offset,SEEK_SET);
 
-			// å¤„ç† BMP å’Œ TGA æ–‡ä»¶
-			if (strstr(list.GetName(i), ".bmp") || strstr(list.GetName(i), ".tga")) {
-				for (j = 0; j < old_list[n].size - 1024; j += 1024) {
-					fread(buffer, 1, 1024, df);
-					fwrite(buffer, 1, 1024, f);
-				}
-				j = old_list[n].size - j;
-				fread(buffer, 1, j, df);
-				fwrite(buffer, 1, j, f);
+			for (j=0;j<old_list[n].size-1024;j+=1024) {
+				fread(buffer,1,1024,df);
+				fwrite(buffer,1,1024,f);
 			}
-			else {
-				// å¤„ç†å…¶ä»–æ–‡ä»¶
-				for (j = 0; j < old_list[n].size - 1024; j += 1024) {
-					fread(buffer, 1, 1024, df);
-					fwrite(buffer, 1, 1024, f);
-				}
-				j = old_list[n].size - j;
-				fread(buffer, 1, j, df);
-				fwrite(buffer, 1, j, f);
-			}
+			j=old_list[n].size-j;
+			fread(buffer,1,j,df);
+			fwrite(buffer,1,j,f);
 			fclose(f);
 			printf(" Extracted\n");
 		}
 		fclose(df);
 
 		return 0;
+
 	}
-	strcpy(lstname, agc[1]);
-	strcpy(dataname, agc[1]);
-	strcat(lstname, ".lst");
-	strcat(dataname, ".wdf");
+	strcpy(lstname,agc[1]);
+	strcpy(dataname,agc[1]);
+	strcat(lstname,".lst");
+	strcat(dataname,".wdf");
 	if (!file_exist(lstname)) {
 		printf("Can't open list file[.lst]\n");
 		return -1;
 	}
 	if (file_exist(dataname)) {
 		printf("Updating Data File...\n");
-		update_datafile(dataname, lstname);
+		update_datafile(dataname,lstname);
 	}
 	else {
 		printf("Creating New Data File...\n");
-		create_new(dataname, lstname);
+		create_new(dataname,lstname);
 	}
 	return 0;
 }
-
